@@ -1,0 +1,47 @@
+#include <malloc.h>
+#include <string.h>
+#include "link_list.h"
+
+
+void Reverse(LinkList list)
+{
+  LinkNode *index = list->next;
+  LinkNode *pre = list->next;
+  LinkNode *next = list->next->next;
+  while (next != NULL)
+  {
+    pre = index;
+    index = next;
+    next = index->next;
+    printf("pre: %d\n", pre->value);
+    printf("index: %d\n", index->value);
+    //printf("next: %d\n", next->value);
+    printf("\n");
+    index->next = pre;
+    if (pre == (list->next))
+      pre->next == NULL;
+  }
+  list->next = index;
+  
+  printf("%d, %d, %d, %d\n", list->next->value, list->next->next->value, list->next->next->next->value, list->next->next->next->next->value);
+}
+
+
+void main()
+{
+  LinkList list;
+
+  Initialization(&list);
+  int i;
+  for (i=0; i<10; i++)
+  {
+    InsertTail(list, i);
+  }
+  PrintList(list);
+
+  Reverse(list);
+  //PrintList(list);
+  //printf("List length: %d\n", ListLength(list));
+
+}
+
